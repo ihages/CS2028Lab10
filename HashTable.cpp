@@ -6,7 +6,7 @@ HashTable<T>::~HashTable() {
 }
 
 template <class T>
-void HashTable<T>::Insert(T* inVal) {
+void HashTable<T>::Insert(T inVal) {
     if (isFull()) {
         Exception(-1, "Hash Table is full");
     }
@@ -20,7 +20,7 @@ void HashTable<T>::Insert(T* inVal) {
 }
 
 template <class T>
-T* HashTable<T>::Remove(T* target) {
+T* HashTable<T>::Remove(T target) {
     GetItem(target);
     int index = Hash(target);
 
@@ -34,12 +34,12 @@ T* HashTable<T>::Remove(T* target) {
 }
 
 template <class T>
-int HashTable<T>::Hash(T* inVal) {
+int HashTable<T>::Hash(T inVal) {
     return inVal % MAXSIZE;
 }
 
 template <class T>
-T* HashTable<T>::GetItem(T* target) {
+T* HashTable<T>::GetItem(T target) {
     int index = Hash(target);
 
     while(data[index] != target && (data[index] == nullptr && deletedF[index] == false) ) {

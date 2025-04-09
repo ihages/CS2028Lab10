@@ -1,5 +1,5 @@
-#ifndef __HashTable__
-#define __HashTable__
+#ifndef __HASHTABLE__
+#define __HASHTABLE__
 
 #include <iostream>
 
@@ -24,16 +24,16 @@ class HashTable {
 
         ~HashTable();
 
-        void Insert(T* inVal);
-        T* Remove(T* inVal);
-        int Hash(T* inVal);
-	    T* GetItem(T* inVal); 
+        void Insert(T inVal);
+        T* Remove(T inVal);
+        int Hash(T inVal);
+	    T* GetItem(T inVal); 
         void Print();
 
         bool isFull();
         bool isEmpty();
-        
-        int GetLength();
 
+        int GetLength();
 };
+
 #endif

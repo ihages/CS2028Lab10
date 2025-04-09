@@ -7,13 +7,14 @@ class Student {
 	private:
 		std::string firstName;
 		std::string lastName;
-		std::string mNumber;
+		int mNumber;
 		std::string major;
 
 	public:
-		Student() : firstName(" "), lastName(" "), mNumber(" "), major(" ") {};
-        Student(std::string fN,std::string lN, std::string mN, std::string mjr) : firstName(fN), lastName(lN), mNumber(mN), major(mjr) {};
+		Student() : firstName(" "), lastName(" "), mNumber(-1), major(" ") {};
+        Student(std::string fN,std::string lN, int mN, std::string mjr) : firstName(fN), lastName(lN), mNumber(mN), major(mjr) {};
 
+        int operator%(const int &right) { return this->mNumber % right; }
 
         bool operator>(const Student &right) { return this->mNumber > right.mNumber; }
         bool operator<(const Student &right) { return this->mNumber < right.mNumber; }
