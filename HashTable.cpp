@@ -76,6 +76,27 @@ void HashTable<T>::Print() {
     }
 }
 
+template <class T>
+bool HashTable<T>::isFull() {
+    for (int i{}; i < MAXSIZE1; i++) {
+        if (data[i] == INT_MIN) {   //Check for a value that isn’t filled
+            return false;
+        }
+    }
+    return true;
+}
+
+template <class T>
+bool HashTable<T>::isEmpty() {
+    for (int i{}; i < MAXSIZE1; i++) {
+        if (data[i] != INT_MIN) {   //Check for a value that is filled
+            return false;
+        }
+    }
+    return true;
+}
+
+
 template<class T>
 int HashTable<T>::GetLength() {
     return length;
