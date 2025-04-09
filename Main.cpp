@@ -1,9 +1,11 @@
 //give the user options to test each function
 #include<iostream>
 #include<string>
-#include<HashTabl.h>
+#include<HashTable.h>
 
-OneDHash = HashTable1D();
+HashTable<Student> OneDHash;
+
+Student StudentData;
 
 int main() {
 	int choice = 0;
@@ -17,28 +19,29 @@ int main() {
 		switch (choice) {
 			case 1: {
 				//need a function to get student data
-				OneDHash.Add(StudentData);
+				OneDHash.Insert(StudentData);
 				std::cout << "Added student data to the data structure" << std::endl;
 				break;
 			}
 			case 2: {
 				//getstudentdata
-				int* retPtr{};
+				Student* retPtr{};
 				retPtr = OneDHash.Remove(StudentData);
 				std::cout << "Removed item at " << retPtr << std::endl;
 				break;
 			}
 			case 3: {
 				//getstudentdata
-				int* retPtr{};
+				Student* retPtr{};
 				retPtr = OneDHash.GetItem(StudentData);
 				if (retPtr != nullptr) {
 					std::cout << "The item was found at" << retPtr << std::endl;
 				}
 				else {
 					std::cout << "The item was not found in the structure." << std::endl;
-					break;
 				}
+                break;
+            }
 			case 4: {
 				int OneDHashTableLength = 0;
 				OneDHashTableLength = OneDHash.GetLength();
@@ -51,4 +54,6 @@ int main() {
 		}
 		return 0;
 	}
+}
+
 
