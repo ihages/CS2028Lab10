@@ -32,7 +32,8 @@ class HashTable {
 
         bool isFull();
         bool isEmpty();
-
+        
+        int GetLength();
 
 };
 #endif
