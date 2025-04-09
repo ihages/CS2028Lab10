@@ -1,5 +1,4 @@
 #include "List.h"
-#include "Part.h"
 
 template <class T>
 List<T>::~List() {
@@ -226,4 +225,4 @@ bool List<T>::operator<(const List<T>& right) const {
 }
 
 
-template class List<Part>;
+template class List<Student>;

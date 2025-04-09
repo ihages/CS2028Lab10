@@ -1,7 +1,11 @@
 //give the user options to test each function
 #include<iostream>
 #include<string>
-#include<HashTable.h>
+#include"HashTable.h"
+#include"Student.h"
+#include"Exceptions.h"
+#include"ChainHash.h"
+
 
 HashTable<Student> OneDHash;
 
