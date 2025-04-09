@@ -3,6 +3,8 @@
 
 #include "Node.h"
 #include "Exceptions.h"
+#include "Student.h"
+
 
 template <class T>
 class List {
@@ -28,7 +30,6 @@ public:
     T SeePrev();
     T SeeAt(int target);
     void Reset();
-    void DisplayList();
 
     //Operator Overloads
     bool operator<(const List<T>& right) const;

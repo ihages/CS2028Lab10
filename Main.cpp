@@ -5,7 +5,7 @@
 #include"Student.h"
 #include"Exceptions.h"
 #include"ChainHash.h"
-
+#include"List.h"
 
 HashTable<Student> OneDHash;
 

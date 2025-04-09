@@ -11,7 +11,7 @@ const int MAXSIZE = 100;
 template <class T>
 class HashTable {
     private:
-        T* data[MAXSIZE];
+        T data[MAXSIZE];
         bool deletedF[MAXSIZE];
 		int length;
     public:

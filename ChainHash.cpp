@@ -39,12 +39,9 @@ T* ChainHash<T>::Remove(T target) {
 	else {
 		T* retVal = data[index].RemoveItem(target);
 		return retVal;
-		}
 	}
-
-
-    //modify for 2D
 }
+
 
 template <class T>
 int ChainHash<T>::Hash(T inVal) {
@@ -53,11 +50,13 @@ int ChainHash<T>::Hash(T inVal) {
 
 template <class T>
 T* ChainHash<T>::GetItem(T target) {
-    //modify for 2D
-}
-
-template <class T>
-void ChainHash<T>::Print() {
+	int index = Hash(target);
+	if (data[index].isEmpty()) {
+		Exception(-1, "Item not found in the list");
+	}
+	else {
+		T* retVal = data[index].GetItem(target);
+	}
     //modify for 2D
 }
 
@@ -68,7 +67,7 @@ bool ChainHash<T>::isFull() {
 
 template <class T>
 bool ChainHash<T>::isEmpty() { //only need to check the first dimension because you can't have a 2nd dimension without the first being full
-    for (int i{}; i < MAXSIZE1; i++) {
+    for (int i{}; i < MAXSIZE; i++) {
         if (data[i] != INT_MIN) {   //Check for a value that is filled
             return false;
         }

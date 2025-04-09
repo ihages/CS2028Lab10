@@ -7,17 +7,14 @@
 #include "Exceptions.h"
 #include "List.h"
 
-const int MAXROWS = 100;
-
 template<class T>
-class ChainHash {
+class ChainHash : public HashTable{
 private:
-	List data[MAXROWS];
+	List<T> data[MAXSIZE];
 	int length;
-	int size;
 public:
 	ChainHash(){
-		for (int i{}; i < MAXROWS; i++) {
+		for (int i{}; i < MAXSIZE; i++) {
 			data[i] = nullptr;
 		}
 	}
@@ -28,13 +25,11 @@ public:
 	T* Remove(T inVal);
 	int Hash(T inVal);
 	T* GetItem(T inVal);
-	void Print();
 
 	bool isFull();
 	bool isEmpty();
 
 	int GetLength();
-	int GetSize();
 
 };
 

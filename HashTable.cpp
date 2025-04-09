@@ -78,8 +78,8 @@ void HashTable<T>::Print() {
 
 template <class T>
 bool HashTable<T>::isFull() {
-    for (int i{}; i < MAXSIZE1; i++) {
-        if (data[i] == INT_MIN) {   //Check for a value that isn’t filled
+    for (int i{}; i < MAXSIZE; i++) {
+        if (data[i] == nullptr) {   //Check for a value that isn’t filled
             return false;
         }
     }
@@ -88,8 +88,8 @@ bool HashTable<T>::isFull() {
 
 template <class T>
 bool HashTable<T>::isEmpty() {
-    for (int i{}; i < MAXSIZE1; i++) {
-        if (data[i] != INT_MIN) {   //Check for a value that is filled
+    for (int i{}; i < MAXSIZE; i++) {
+        if (data[i] != nullptr) {   //Check for a value that is filled
             return false;
         }
     }

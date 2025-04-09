@@ -192,17 +192,6 @@ T List<T>::SeeAt(int target) {
     return temp->data;
 }
 
-template <class T>
-void List<T>::DisplayList() {
-    Node<T>* temp = first;
-	while (temp != nullptr) {
-        temp->data.display();
-        temp = temp->next;
-        if (temp != nullptr) {
-            std::cout << "         |  |" << std::endl;
-        }
-	}        
-}
 
 template <class T>
 void List<T>::Reset() {
