@@ -27,7 +27,7 @@ T* HashTable<T>::Remove(T target) {
     while(data[index] != target) {
         index = (index + 1) % MAXSIZE;
     }
-    T* retVal = data[index];
+    T retVal = data[index];
     deletedF[index] = true;
     data[index] = nullptr;
     return retVal;

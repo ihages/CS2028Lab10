@@ -1,14 +1,14 @@
 //give the user options to test each function
-#include<iostream>
-#include<string>
-#include"HashTable.h"
-#include"Student.h"
-#include"Exceptions.h"
-#include"ChainHash.h"
-#include"List.h"
+#include <iostream>
+#include <string>
+#include "HashTable.h"
+#include "Student.h"
+#include "Exceptions.h"
+#include "ChainHash.h"
+#include "List.h"
 
 HashTable<Student> OneDHash;
-
+ChainHash<Student> ChainHashTable;
 Student StudentData;
 
 int main() {

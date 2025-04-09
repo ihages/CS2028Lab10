@@ -18,7 +18,7 @@ class HashTable {
 
         HashTable() {
             for (int i{}; i < MAXSIZE; i++) {
-                data[i] = nullptr;
+                data[i] = NULL;
             }
         };
 

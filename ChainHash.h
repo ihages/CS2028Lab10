@@ -6,9 +6,10 @@
 #include "Student.h"
 #include "Exceptions.h"
 #include "List.h"
+#include "HashTable.h"
 
 template<class T>
-class ChainHash : public HashTable{
+class ChainHash : public HashTable<T>{
 private:
 	List<T> data[MAXSIZE];
 	int length;

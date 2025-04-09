@@ -2,7 +2,7 @@
 
 template<class T>
 ChainHash<T>::~ChainHash() {
-	for (int i{}; i < MAXROWS; i++) {
+	for (int i{}; i < MAXSIZE; i++) {
 		data[i].~List();
 	}
 }
@@ -18,7 +18,7 @@ void ChainHash<T>::Insert(T inVal) {
 	}
 	else {
 		//Check if the item is already in the list
-		T* temp = data[index].GetItem(inVal);
+		T temp = data[index].GetItem(inVal);
 		if (temp == nullptr) {
 			data[index].AddItem(inVal);
 		}
@@ -55,7 +55,7 @@ T* ChainHash<T>::GetItem(T target) {
 		Exception(-1, "Item not found in the list");
 	}
 	else {
-		T* retVal = data[index].GetItem(target);
+		T retVal = data[index].GetItem(target);
 	}
     //modify for 2D
 }
@@ -81,4 +81,4 @@ int ChainHash<T>::GetLength() {
     return length;
 }
 
-template class ChainHash<Student>;
+template class ChainHash<List<Student>>;
