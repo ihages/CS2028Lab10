@@ -76,4 +76,9 @@ void HashTable<T>::Print() {
     }
 }
 
+template<class T>
+int HashTable<T>::GetLength() {
+    return length;
+}
+
 template class HashTable<Student>;
