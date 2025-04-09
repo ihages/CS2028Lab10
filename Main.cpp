@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //give the user options to test each function
 #include<iostream>
 #include<string>
@@ -52,3 +53,59 @@ int main() {
 			  return 0;
 		}
 
+=======
+//give the user options to test each function
+#include<iostream>
+#include<string>
+#include<HashTabl.h>
+
+OneDHash = HashTable1D();
+
+int main() {
+	int choice = 0;
+	std::cout << "Select which function you would like to test : \n1.Add\n2.Remove\n3.GetItem\n4.GetLength\n5.Quit" << std::endl;
+	std::cin >> choice;
+	while (choice != 5) {
+		while (choice < 1 || choice >5) {
+			std::cout << "Invalid input.Please try again." << std::endl;
+			std::cin >> choice;
+		}
+		switch (choice) {
+			case 1: {
+				//need a function to get student data
+				OneDHash.Add(StudentData);
+				std::cout << "Added student data to the data structure" << std::endl;
+				break;
+			}
+			case 2: {
+				//getstudentdata
+				int* retPtr{};
+				retPtr = OneDHash.Remove(StudentData);
+				std::cout << "Removed item at " << retPtr << std::endl;
+				break;
+			}
+			case 3: {
+				//getstudentdata
+				int* retPtr{};
+				retPtr = OneDHash.GetItem(StudentData);
+				if (retPtr != nullptr) {
+					std::cout << "The item was found at" << retPtr << std::endl;
+				}
+				else {
+					std::cout << "The item was not found in the structure." << std::endl;
+					break;
+				}
+			case 4: {
+				int OneDHashTableLength = 0;
+				OneDHashTableLength = OneDHash.GetLength();
+				std::cout << "The length of the hash table is" << OneDHashTableLength << std::endl;
+				break;
+			}
+			case 5: {
+				return 0;
+			}
+		}
+		return 0;
+	}
+
+>>>>>>> bd446f29d1382e9cd69f95315b10197d7f6948c5
