@@ -53,6 +53,19 @@ bool ChainHash<T>::isEmpty() { //only need to check the first dimension because 
 	return length == 0;
 }
 
+template <class T>
+int ChainHash<T>::GetItemTouches(T target) {
+	int index = Hash(target);
+	int touches = 0;
+	if (data[index].IsEmpty()) {
+		Exception(-1, "Item not found in the list");
+	}
+	data[index].GetItem(target);
+	touches += data[index].countTouches(target);
+	return touches;
+}
+
+
 
 template<class T>
 int ChainHash<T>::GetLength() {

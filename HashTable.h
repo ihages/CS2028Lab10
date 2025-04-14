@@ -6,17 +6,26 @@
 #include "Student.h"
 #include "Exceptions.h"
 
-const int MAXSIZE = 100;
 
 template <class T>
 class HashTable {
     private:
-        T* data[MAXSIZE];
-        bool deletedF[MAXSIZE];
+		int MAXSIZE;
+        T** data;
+        bool* deletedF;
 		int length;
     public:
 
         HashTable() {
+            MAXSIZE = 100;
+			data = new T*[MAXSIZE];
+            for (int i{}; i < MAXSIZE; i++) {
+                data[i] = nullptr;
+            }
+        };
+        HashTable(int newsize) {
+            MAXSIZE = newsize;
+			data = new T*[MAXSIZE];
             for (int i{}; i < MAXSIZE; i++) {
                 data[i] = nullptr;
             }
@@ -33,6 +42,8 @@ class HashTable {
         virtual bool isEmpty();
 
         virtual int GetLength();
+
+        virtual int GetItemTouches(T target);
 };
 
 #endif

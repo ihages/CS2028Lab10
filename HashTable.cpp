@@ -8,7 +8,7 @@ HashTable<T>::~HashTable() {
 template <class T>
 void HashTable<T>::Insert(T inVal) {
     if (isFull()) {
-        throw Exception(-1, "Hash Table is full");
+         throw Exception(-1, "Hash Table is full");
     }
 
     //If location you want add at is taken add move up a space
@@ -67,6 +67,37 @@ T* HashTable<T>::GetItem(T target) {
     } while (index != startIndex);
     throw Exception(-1, "Unable to find value in Hash Table");
 }
+
+template <class T>
+int HashTable<T>::GetItemTouches(T target) {
+    int index = Hash(target);
+    int startIndex = index;
+    int touches = 0;
+
+    do {
+        touches++;
+        // Skip deleted slots
+        if (data[index] == nullptr && deletedF[index] == true) {
+            index = (index + 1) % MAXSIZE;
+            continue;
+        }
+
+        // If we found a non-null slot with matching data
+        if (data[index] != nullptr && *data[index] == target) {
+            return touches;
+        }
+
+        // If we found an empty slot (not deleted), the item doesn't exist
+        if (data[index] == nullptr && !deletedF[index]) {
+            throw Exception(-1, "Unable to find value in Hash Table");
+        }
+
+        // Move to next slot
+        index = (index + 1) % MAXSIZE;
+    } while (index != startIndex);
+    throw Exception(-1, "Unable to find value in Hash Table");
+}
+
 
 
 template <class T>

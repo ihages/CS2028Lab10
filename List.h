@@ -30,6 +30,7 @@ public:
     T SeePrev();
     T SeeAt(int target);
     void Reset();
+    int countTouches(T target);
 
     //Operator Overloads
     bool operator<(const List<T>& right) const;

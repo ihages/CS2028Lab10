@@ -198,6 +198,18 @@ void List<T>::Reset() {
     curLocation = nullptr;
 }
 
+template<class T>
+int List<T>::countTouches(T target) {
+    Node<T>* temp = first;
+    int touches = 1;
+    while (temp != nullptr && temp->data != target) {
+        temp = temp->next;
+        touches++;
+    }
+    return touches;
+}
+
+
 template <class T>
 bool List<T>::operator==(const List<T>& right) const {
     return this->first->data == right.first->data;

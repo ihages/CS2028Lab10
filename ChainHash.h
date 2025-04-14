@@ -11,10 +11,21 @@
 template<class T>
 class ChainHash : public HashTable<T>{
 private:
-	List<T> data[MAXSIZE];
+	int MAXSIZE{};
+	List<T> *data;
 	int length;
 public:
 	ChainHash(){
+		MAXSIZE = 100;
+		data = new List<T>[MAXSIZE];
+		for (int i{}; i < MAXSIZE; i++) {
+			data[i] = List<T>();
+		}
+		length = 0;
+	}
+	ChainHash(int newsize) {
+		MAXSIZE = newsize;
+		data = new List<T>[MAXSIZE];
 		for (int i{}; i < MAXSIZE; i++) {
 			data[i] = List<T>();
 		}
@@ -30,6 +41,8 @@ public:
     bool isFull() override;
     bool isEmpty() override;
     int GetLength() override;
+	int GetItemTouches(T target) override;
+
 };
 
 

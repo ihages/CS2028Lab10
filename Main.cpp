@@ -1,7 +1,8 @@
 //give the user options to test each function
 #include <iostream>
 #include <string>
-#include <random>
+//#include <random>
+#include<cstdlib>
 #include <ctime>
 #include "HashTable.h"
 #include "Student.h"
@@ -21,7 +22,7 @@ int main() {
 	srand(time(0));
 	int tabletype = 0;
 	while (true) {
-		std::cout << "Which table would you like to test?\n1. Hash Table\n2. Chain Hash Table\n3. Quit" << std::endl;
+		std::cout << "Which table would you like to test?\n1. Hash Table\n2. Chain Hash Table\n3. Compare Find Touches\n4. Quit" << std::endl;
 		std::cin >> tabletype;
 		switch (tabletype) {
 		case 1: {
@@ -137,6 +138,36 @@ int main() {
 			break;
 		}
 		case 3: {
+			int size = 50;
+			for (int i = 0; i < 4; i++) {
+				HashTable<Student> Hash(size);
+				std::cout << "Comparing touches for a table of size " <<size <<":" << std::endl;
+				int hashTouches = 0;
+				int chainTouches = 0;
+				Student studentArr[50];
+				for (int i = 0; i < 50; i++) {
+					Student temp = createRandomStudent();
+					studentArr[i] = temp;
+					Hash.Insert(studentArr[i]);
+					ChainHashTable.Insert(studentArr[i]);
+				}
+				std::cout << "Student\tHash Touches\tChain Hash Touches" << std::endl;
+				for (int i = 0; i < 50; i++) {
+					hashTouches += Hash.GetItemTouches(studentArr[i]);
+					chainTouches += ChainHashTable.GetItemTouches(studentArr[i]);
+					std::cout << studentArr[i] << "\t\t" << hashTouches << "\t\t" << chainTouches << std::endl;
+				}
+				if (size == 50) {
+					size = 150;
+				}
+				else {
+					size += 50;
+				}
+			}
+			
+			break;
+		}
+		case 4: {
 			return 0;
 		}
 		}
@@ -184,7 +215,7 @@ Student createRandomStudent() {
 
 	int randFName = rand() % 10;
 	int randLName = rand() % 10;
-	int randMNum = rand() % 10000;
+	int randMNum = (rand() % 1000000) +10000000;
 	int randMJ = rand() % 10;
 
 	Student temp(firstNames[randFName], lastNames[randLName], randMNum, majors[randMJ]);
