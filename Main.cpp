@@ -28,54 +28,52 @@ int main() {
 			int choice = 0;
 			bool hashbool = true;
 			while (hashbool) {
-				std::cout << "Select which function you would like to test: \n1.Add\n2.Remove\n3.GetItem\n4.GetLength\n5.Return" << std::endl;
-				std::cin >> choice;
-				switch (choice) {
-				case 1: {
-					//need a function to get student data
-					Student StudentData = inputUserStudent();
-					Hash.Insert(StudentData);
-					std::cout << "Added student data to the data structure" << std::endl;
-					break;
-				}
-				case 2: {
-					//getstudentdata
-					Student StudentData = mNumSearch();
-					Student* retPtr{};
-					retPtr = Hash.Remove(StudentData);
-					std::cout << "Removed student " << *retPtr << std::endl;
-					break;
-				}
-				case 3: {
-					//getstudentdata
-					Student StudentData = mNumSearch();
-					Student* retPtr{};
-					retPtr = Hash.GetItem(StudentData);
-					if (retPtr == nullptr) {
-						std::cout << "The item was not found in the structure." << std::endl;
+				try {
+					std::cout << "Select which function you would like to test: \n1.Add\n2.Remove\n3.GetItem\n4.GetLength\n5.Return" << std::endl;
+					std::cin >> choice;
+					switch (choice) {
+					case 1: {
+						//need a function to get student data
+						Student StudentData = inputUserStudent();
+						Hash.Insert(StudentData);
+						std::cout << "Added student data to the data structure" << std::endl;
+						break;
 					}
-					else {
-						std::cout << "Student " << *retPtr << " was found"<< std::endl;
+					case 2: {
+						//getstudentdata
+						Student StudentData = mNumSearch();
+						Student* retPtr{};
+						retPtr = Hash.Remove(StudentData);
+						std::cout << "Removed student " << *retPtr << std::endl;
+						break;
 					}
-
-					break;
+					case 3: {
+						//getstudentdata
+						Student StudentData = mNumSearch();
+						Student* retPtr{};
+						retPtr = Hash.GetItem(StudentData);
+						std::cout << "Student " << *retPtr << " was found" << std::endl;
+						break;
+					}
+					case 4: {
+						int HashTableLength = 0;
+						HashTableLength = Hash.GetLength();
+						std::cout << "The length of the hash table is " << HashTableLength << std::endl;
+						break;
+					}
+					case 5: {
+						hashbool = false;
+						break;
+					}
+					default: {
+						std::cout << "Please enter a valid input" << std::endl;
+						break;
+					}
+					}
 				}
-				case 4: {
-					int HashTableLength = 0;
-					HashTableLength = Hash.GetLength();
-					std::cout << "The length of the hash table is " << HashTableLength << std::endl;
-					break;
+				catch (Exception& e) {
+					std::cout << e.errorNumber << " : " << e.errorMessage << std::endl;
 				}
-				case 5: {
-					hashbool = false;
-					break;
-				}
-				default: {
-					std::cout << "Please enter a valid input" << std::endl;
-					break;
-				}
-				}
-
 			}
 			break;
 		}
@@ -83,54 +81,58 @@ int main() {
 			int choice = 0;
 			bool chainbool = true;
 			while (chainbool) {
-				std::cout << "Select which function you would like to test: \n1.Add\n2.Remove\n3.GetItem\n4.GetLength\n5.Return" << std::endl;
-				std::cin >> choice;
-				switch (choice) {
-				case 1: {
-					//need a function to get student data
-					Student StudentData = inputUserStudent();
-					ChainHashTable.Insert(StudentData);
-					std::cout << "Added student data to the data structure" << std::endl;
-					break;
-				}
-				case 2: {
-					//getstudentdata
-					Student StudentData = mNumSearch();
-					Student* retPtr{};
-					retPtr = ChainHashTable.Remove(StudentData);
-					std::cout << "Removed student " << *retPtr << std::endl;
-					break;
-				}
-				case 3: {
-					//getstudentdata
-					Student StudentData = mNumSearch();
-					Student* retPtr{};
-					retPtr = ChainHashTable.GetItem(StudentData);
-					if (retPtr == nullptr) {
-						std::cout << "The item was not found in the structure." << std::endl;
+				try {
+					std::cout << "Select which function you would like to test: \n1.Add\n2.Remove\n3.GetItem\n4.GetLength\n5.Return" << std::endl;
+					std::cin >> choice;
+					switch (choice) {
+					case 1: {
+						//need a function to get student data
+						Student StudentData = inputUserStudent();
+						ChainHashTable.Insert(StudentData);
+						std::cout << "Added student data to the data structure" << std::endl;
+						break;
 					}
-					else {
-						std::cout << "Student " << *retPtr << " was found" << std::endl;
+					case 2: {
+						//getstudentdata
+						Student StudentData = mNumSearch();
+						Student* retPtr{};
+						retPtr = ChainHashTable.Remove(StudentData);
+						std::cout << "Removed student " << *retPtr << std::endl;
+						break;
 					}
+					case 3: {
+						//getstudentdata
+						Student StudentData = mNumSearch();
+						Student* retPtr{};
+						retPtr = ChainHashTable.GetItem(StudentData);
+						if (retPtr == nullptr) {
+							std::cout << "The student was not found in the structure." << std::endl;
+						}
+						else {
+							std::cout << "Student " << *retPtr << " was found" << std::endl;
+						}
 
-					break;
+						break;
+					}
+					case 4: {
+						int HashTableLength = 0;
+						HashTableLength = ChainHashTable.GetLength();
+						std::cout << "The length of the hash table is " << HashTableLength << std::endl;
+						break;
+					}
+					case 5: {
+						chainbool = false;
+						break;
+					}
+					default: {
+						std::cout << "Please enter a valid input" << std::endl;
+						break;
+					}
+					}
 				}
-				case 4: {
-					int HashTableLength = 0;
-					HashTableLength = ChainHashTable.GetLength();
-					std::cout << "The length of the hash table is " << HashTableLength << std::endl;
-					break;
+				catch (Exception& e) {
+					std::cout << e.errorNumber << " : " << e.errorMessage << std::endl;
 				}
-				case 5: {
-					chainbool = false;
-					break;
-				}
-				default: {
-					std::cout << "Please enter a valid input" << std::endl;
-					break;
-				}
-				}
-
 			}
 			break;
 		}
@@ -158,7 +160,10 @@ Student inputUserStudent() {
 	std::cin >> mNumber;
 
 	std::cout << "Please enter the student's major: " << std::endl;
-	std::cin >> major;
+
+	std::getline(std::cin, major);
+	//std::cin >> major;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the newline left in the buffer
 
 	Student temp(firstName, lastName, mNumber, major);
 	return temp;

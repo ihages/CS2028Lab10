@@ -16,6 +16,7 @@ void HashTable<T>::Insert(T inVal) {
     while(data[index] != nullptr) {
         index = (index + 1) % MAXSIZE;
     }
+    length++;
     data[index] = new T(inVal);
 }
 
@@ -30,6 +31,7 @@ T* HashTable<T>::Remove(T target) {
     T* retVal = data[index];
     deletedF[index] = true;
     data[index] = nullptr;
+    length--;
     return retVal;
 }
 
@@ -41,22 +43,31 @@ int HashTable<T>::Hash(T inVal) {
 template <class T>
 T* HashTable<T>::GetItem(T target) {
     int index = Hash(target);
-    try {
-        if (data[index] == nullptr) {   //nullptr in place of NULL
-            throw Exception(-1, "Unable to find value in Hash Table");
-        }
-        while (!(*data[index] == target) && !(data[index] == nullptr) && (data[index] == nullptr && deletedF[index] == false)) {
+    int startIndex = index;
+
+    do {
+        // Skip deleted slots
+        if (data[index] == nullptr && deletedF[index] == true) {
             index = (index + 1) % MAXSIZE;
+            continue;
         }
-        if (data[index] == nullptr) {   //nullptr in place of NULL
+
+        // If we found a non-null slot with matching data
+        if (data[index] != nullptr && *data[index] == target) {
+            return data[index];
+        }
+
+        // If we found an empty slot (not deleted), the item doesn't exist
+        if (data[index] == nullptr && !deletedF[index]) {
             throw Exception(-1, "Unable to find value in Hash Table");
         }
-	}
-	catch (Exception& e) {
-		return nullptr;
-	}
-    return data[index];
+
+        // Move to next slot
+        index = (index + 1) % MAXSIZE;
+    } while (index != startIndex);
+    throw Exception(-1, "Unable to find value in Hash Table");
 }
+
 
 template <class T>
 bool HashTable<T>::isFull() {
