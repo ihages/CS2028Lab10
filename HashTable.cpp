@@ -41,13 +41,20 @@ int HashTable<T>::Hash(T inVal) {
 template <class T>
 T* HashTable<T>::GetItem(T target) {
     int index = Hash(target);
-
-    while(*data[index] != target && (data[index] == nullptr && deletedF[index] == false) ) {
-        index = (index + 1) % MAXSIZE;
-    }
-    if (data[index] == nullptr) {   //nullptr in place of NULL
-        throw Exception(-1, "Unable to find value in Hash Table");
-    }
+    try {
+        if (data[index] == nullptr) {   //nullptr in place of NULL
+            throw Exception(-1, "Unable to find value in Hash Table");
+        }
+        while (!(*data[index] == target) && !(data[index] == nullptr) && (data[index] == nullptr && deletedF[index] == false)) {
+            index = (index + 1) % MAXSIZE;
+        }
+        if (data[index] == nullptr) {   //nullptr in place of NULL
+            throw Exception(-1, "Unable to find value in Hash Table");
+        }
+	}
+	catch (Exception& e) {
+		return nullptr;
+	}
     return data[index];
 }
 

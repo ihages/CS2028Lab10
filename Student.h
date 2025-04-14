@@ -18,8 +18,8 @@ class Student {
 
         bool operator>(const Student &right) { return this->mNumber > right.mNumber; }
         bool operator<(const Student &right) { return this->mNumber < right.mNumber; }
-        bool operator==(const Student &right) { return this->mNumber == right.mNumber; }
-        bool operator!=(const Student &right) { return this->mNumber != right.mNumber; }
+        bool operator==(const Student &right) { return mNumber == right.mNumber; }
+		bool operator!=(const Student& right) { return mNumber != right.mNumber; }
 		
 };
 

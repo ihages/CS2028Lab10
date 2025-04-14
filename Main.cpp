@@ -25,12 +25,14 @@ int main() {
 			switch (choice) {
 				case 1: {
 					//need a function to get student data
+					Student StudentData = inputUserStudent();
 					Hash.Insert(StudentData);
 					std::cout << "Added student data to the data structure" << std::endl;
 					break;
 				}
 				case 2: {
 					//getstudentdata
+					Student StudentData = inputUserStudent();
 					Student* retPtr{};
 					retPtr = Hash.Remove(StudentData);
 					std::cout << "Removed item at " << retPtr << std::endl;
@@ -38,14 +40,16 @@ int main() {
 				}
 				case 3: {
 					//getstudentdata
+					Student StudentData = inputUserStudent();
 					Student* retPtr{};
 					retPtr = Hash.GetItem(StudentData);
-					if (retPtr != nullptr) {
-						std::cout << "The item was found at" << retPtr << std::endl;
+					if (retPtr == nullptr){
+						std::cout <<"The item was not found in the structure." << std::endl;
 					}
 					else {
-						std::cout << "The item was not found in the structure." << std::endl;
+						std::cout << "The item was found at" << retPtr << std::endl;
 					}
+					
 					break;
 				}
 				case 4: {
