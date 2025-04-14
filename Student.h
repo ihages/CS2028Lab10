@@ -20,7 +20,11 @@ class Student {
         bool operator<(const Student &right) { return this->mNumber < right.mNumber; }
         bool operator==(const Student &right) { return mNumber == right.mNumber; }
 		bool operator!=(const Student& right) { return mNumber != right.mNumber; }
-		
+
+		friend std::ostream& operator<<(std::ostream& os, const Student& right) {
+			os << "m" << right.mNumber;
+			return os;
+		}
 };
 
 #endif
