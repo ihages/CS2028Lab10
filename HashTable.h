@@ -11,29 +11,28 @@ const int MAXSIZE = 100;
 template <class T>
 class HashTable {
     private:
-        T data[MAXSIZE];
+        T* data[MAXSIZE];
         bool deletedF[MAXSIZE];
 		int length;
     public:
 
         HashTable() {
             for (int i{}; i < MAXSIZE; i++) {
-                data[i] = NULL;
+                data[i] = nullptr;
             }
         };
 
-        ~HashTable();
+        virtual ~HashTable();
 
-        void Insert(T inVal);
-        T* Remove(T inVal);
-        int Hash(T inVal);
-	    T* GetItem(T inVal); 
-        void Print();
+        virtual void Insert(T inVal);
+        virtual T* Remove(T inVal);
+        virtual int Hash(T inVal);
+        virtual T* GetItem(T inVal);
 
-        bool isFull();
-        bool isEmpty();
+        virtual bool isFull();
+        virtual bool isEmpty();
 
-        int GetLength();
+        virtual int GetLength();
 };
 
 #endif

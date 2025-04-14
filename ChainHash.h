@@ -16,22 +16,20 @@ private:
 public:
 	ChainHash(){
 		for (int i{}; i < MAXSIZE; i++) {
-			data[i] = nullptr;
+			data[i] = List<T>();
 		}
+		length = 0;
 	}
 
-	~ChainHash();
+	~ChainHash() override;
 
-	void Insert(T inVal);
-	T* Remove(T inVal);
-	int Hash(T inVal);
-	T* GetItem(T inVal);
-
-	bool isFull();
-	bool isEmpty();
-
-	int GetLength();
-
+	void Insert(T inVal) override;
+    T* Remove(T inVal) override;
+    int Hash(T inVal) override;
+    T* GetItem(T inVal) override;
+    bool isFull() override;
+    bool isEmpty() override;
+    int GetLength() override;
 };
 
 

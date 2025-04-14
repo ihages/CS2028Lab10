@@ -1,4 +1,4 @@
-#include"ChainHash.h"
+#include "ChainHash.h"
 
 template<class T>
 ChainHash<T>::~ChainHash() {
@@ -9,37 +9,22 @@ ChainHash<T>::~ChainHash() {
 
 template <class T>
 void ChainHash<T>::Insert(T inVal) {
-    if (isFull()) {
-        Exception(-1, "Hash Table is full");
-    }
 	int index = Hash(inVal);
-	if (data[index].isEmpty()) {
-		data[index].AddItem(inVal);
-	}
-	else {
-		//Check if the item is already in the list
-		T temp = data[index].GetItem(inVal);
-		if (temp == nullptr) {
-			data[index].AddItem(inVal);
-		}
-		else {
-			Exception(-1, "Item already exists in the list");
-		}
-	}
-    //modify for 2D
+	data[index].AddItem(inVal);
+	length++;
 }
 
 template <class T>
 T* ChainHash<T>::Remove(T target) {
-    GetItem(target);
-    int index = Hash(target);
-	if (data[index].isEmpty()) {
-		Exception(-1, "Item not found in the list");
+	int index = Hash(target);
+	if (data[index].IsEmpty()) {
+		throw Exception(-1, "Item not found in ChainHash");
 	}
-	else {
-		T* retVal = data[index].RemoveItem(target);
-		return retVal;
-	}
+
+	T temp = data[index].GetItem(target);
+	T* retVal = new T(temp);
+	length--;
+	return retVal;
 }
 
 
@@ -51,13 +36,11 @@ int ChainHash<T>::Hash(T inVal) {
 template <class T>
 T* ChainHash<T>::GetItem(T target) {
 	int index = Hash(target);
-	if (data[index].isEmpty()) {
+	if (data[index].IsEmpty()) {
 		Exception(-1, "Item not found in the list");
 	}
-	else {
-		T retVal = data[index].GetItem(target);
-	}
-    //modify for 2D
+	T temp = data[index].GetItem(target);
+	return new T(temp);
 }
 
 template <class T>
@@ -67,12 +50,7 @@ bool ChainHash<T>::isFull() {
 
 template <class T>
 bool ChainHash<T>::isEmpty() { //only need to check the first dimension because you can't have a 2nd dimension without the first being full
-    for (int i{}; i < MAXSIZE; i++) {
-        if (data[i] != INT_MIN) {   //Check for a value that is filled
-            return false;
-        }
-    }
-    return true;
+	return length == 0;
 }
 
 
@@ -81,4 +59,4 @@ int ChainHash<T>::GetLength() {
     return length;
 }
 
-template class ChainHash<List<Student>>;
+template class ChainHash<Student>;
