@@ -1,6 +1,8 @@
 //give the user options to test each function
 #include <iostream>
 #include <string>
+#include <random>
+#include <time>
 #include "HashTable.h"
 #include "Student.h"
 #include "Exceptions.h"
@@ -11,7 +13,11 @@ HashTable<Student> Hash;
 ChainHash<Student> ChainHashTable;
 Student StudentData;
 
+Student inputUserStudent();
+Student createRandomStudent();
+
 int main() {
+	srand(time(0));
 	int choice = 0;
 	while (true) {
 		std::cout << "Select which function you would like to test: \n1.Add\n2.Remove\n3.GetItem\n4.GetLength\n5.Quit" << std::endl;
@@ -59,4 +65,40 @@ int main() {
 			
 	}
 	return 0;
+}
+
+Student inputUserStudent() {
+	std::string firstName;
+	std::string lastName;
+	int mNumber;
+	std::string major;
+
+	std::cout << "Please enter the student's first name: " << std::endl;
+	std::cin >> firstName;
+
+	std::cout << "Please enter the student's last name: " << std::endl;
+	std::cin >> lastName;
+
+	std::cout << "Please enter the student's mNumber: " << std::endl;
+	std::cin >> mNumber;
+
+	std::cout << "Please enter the student's major: " << std::endl;
+	std::cin >> major;
+
+	Student temp(firstName, lastName, mNumber, major);
+	return temp;
+}
+
+Student createRandomStudent() {
+	std::string firstNames[] = {"Steve", "Sue", "Mark", "Sarah", "Josh", "Kelly", "Jerry", "Lisa", "Paul", "Rachel"};
+	std::string lastNames[] = {"Smith", "Harvey", "North", "Bines", "O'Conner", "Lincoln", "Adams", "Johnson", "Grant", "Trump"};
+	std::string majors[] = {"CS", "Biology", "Law", "Art", "Architecture", "Business", "Engineering", "English", "Gamer", "Doctor"};
+
+	int randFName = rand() % 10;
+	int randLName = rand() % 10;
+	int randMNum = rand() % 10000;
+	int randMJ = rand() % 10;
+
+	Student temp(firstNames[randFName], lastNames[randLName], randMNum, majors[randMJ]);
+	return temp;
 }
