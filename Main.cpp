@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <random>
-#include <time>
+#include <ctime>
 #include "HashTable.h"
 #include "Student.h"
 #include "Exceptions.h"
