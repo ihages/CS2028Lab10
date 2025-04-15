@@ -138,16 +138,16 @@ int main() {
 			break;
 		}
 		case 3: {
-			int size = 50;
-			int testDataTable[4][3] = { {50, 0, 0}, {100, 0, 0}, {150, 0, 0}, {200, 0, 0} };
+			int testDataTable[4][3] = { {50, 0, 0}, {150, 0, 0}, {200, 0, 0}, {250, 0, 0} };
 			std::cout << "size\thash\tchain" << std::endl;
 			for (int h = 0; h < 4; h++) {
+				int size = testDataTable[h][0];
+				//std::cout << "Size: " << size << std::endl;
 				HashTable<Student> Hash(size);
 				ChainHash<Student> Chain(size);
 				//std::cout << "Comparing touches for a table of size " <<size <<":" << std::endl;
-				int hashTouches = 0;
-				int chainTouches = 0;
-				Student studentArr[50];
+				Student studentArr[size];
+				//std::cout << (sizeof(studentArr)/sizeof(*studentArr)) << std::endl;
 				for (int i = 0; i < 50; i++) {
 					Student temp = createRandomStudent();
 					studentArr[i] = temp;
@@ -156,20 +156,10 @@ int main() {
 				}
 				//std::cout << "Student\tHash Touches\tChain Hash Touches" << std::endl;
 				for (int i = 0; i < 50; i++) {
-					hashTouches += Hash.GetItemTouches(studentArr[i]);
-					chainTouches += Chain.GetItemTouches(studentArr[i]);
+					testDataTable[h][1] += Hash.GetItemTouches(studentArr[i]);
+					testDataTable[h][2] += Chain.GetItemTouches(studentArr[i]);
 					//std::cout << studentArr[i] << "\t\t" << hashTouches << "\t\t" << chainTouches << std::endl;
-					if (i == 49) { //creates the table
-						testDataTable[h][0] = size;
-						testDataTable[h][1] = hashTouches;
-						testDataTable[h][2] = chainTouches;
-					}
-				}
-				if (size == 50) {
-					size = 150;
-				}
-				else {
-					size += 50;
+					
 				}
 				std::cout << testDataTable[h][0] << "\t" << testDataTable[h][1] << "\t" << testDataTable[h][2] << std::endl;
 			}
